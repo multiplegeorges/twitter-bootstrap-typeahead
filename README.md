@@ -4,6 +4,10 @@ Typeahead
 An extension of the Twitter Bootstrap Typeahead plugin (as of v2.0.2)<br />
 <http://twitter.github.com/bootstrap/javascript.html#typeahead>
 
+Demo
+-----------------
+http://tcrosen.github.com/twitter-bootstrap-typeahead/
+
 Required
 -----------------
 * Twitter Bootstrap 2.0.2+
@@ -79,4 +83,4 @@ Sample Usage
 		})
 	})
 
-A full working example is included in this project.
+A full working example is included in this project and is now available at http://tcrosen.github.com/twitter-bootstrap-typeahead/
