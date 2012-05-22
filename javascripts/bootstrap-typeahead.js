@@ -1,4 +1,4 @@
-// ===============================================================================
+﻿// ===============================================================================
 //
 //  Custom implementation of Twitter Bootstrap Typeahead plugin
 //  http://twitter.github.com/bootstrap/javascript.html#typeahead
