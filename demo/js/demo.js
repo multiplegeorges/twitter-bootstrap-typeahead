@@ -15,10 +15,22 @@ var states = [
 		{ id: 1, abbrev: 'AK', full_name: 'Alaska' },
 		{ id: 2, abbrev: 'NY', full_name: 'New York' },
 		{ id: 3, abbrev: 'FLA', full_name: 'Florida' },
-		{ id: 4, abbrev: 'CT', full_name: 'Conneticut' },
+		{ id: 4, abbrev: 'CT', full_name: 'Connecticut' },
 		{ id: 5, abbrev: 'GA', full_name: 'Georgia' },
 		{ id: 6, abbrev: 'NC', full_name: 'North Carolina' }
 	]
+
+var states_via_function = function(){
+	// Could be an AJAX call in here...
+	return [
+		{ id: 1, abbrev: 'AK', full_name: 'Alaska' },
+		{ id: 2, abbrev: 'NY', full_name: 'New York' },
+		{ id: 3, abbrev: 'FLA', full_name: 'Florida' },
+		{ id: 4, abbrev: 'CT', full_name: 'Connecticut' },
+		{ id: 5, abbrev: 'GA', full_name: 'Georgia' },
+		{ id: 6, abbrev: 'NC', full_name: 'North Carolina' }
+	]
+}
 
 $(function() {
 	$('.cities').typeahead({
@@ -35,6 +47,17 @@ $(function() {
 
 	$('.states').typeahead({
 		source: states,
+		matchProp: 'full_name',
+		sortProp: 'abbrev',
+		itemSelected: function(item, val, text) {
+			$('.selected-message').html('You selected the state ' + text + ' with ID ' + val + '<br />View your browser console for the full item element.')
+								  .show();
+			console.log(item)
+		}
+	});
+
+	$('.states_via_function').typeahead({
+		source: states_via_function,
 		matchProp: 'full_name',
 		sortProp: 'abbrev',
 		itemSelected: function(item, val, text) {

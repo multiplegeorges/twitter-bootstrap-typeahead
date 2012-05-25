@@ -65,6 +65,15 @@ function($) {
     }
 
     ,
+    get_source: function() {
+      if(typeof(this.source) == 'function'){
+        return this.source();
+      } else {
+        return this.source;
+      }
+    }
+
+    ,
     lookup: function(event) {
       var _this = this
       var items
@@ -76,7 +85,7 @@ function($) {
         return this.shown ? this.hide() : this
       }
 
-      items = $.grep(this.source, function(item) {
+      items = $.grep(this.get_source(), function(item) {
         var propVal = item[_this.options.matchProp] || item
         if (_this.matcher(propVal)) return item
       })
