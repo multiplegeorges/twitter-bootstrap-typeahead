@@ -20,16 +20,16 @@ var states = [
 		{ id: 6, abbrev: 'NC', full_name: 'North Carolina' }
 	]
 
-var states_via_function = function(){
+var states_via_function = function(typeAhead){
 	// Could be an AJAX call in here...
-	return [
-		{ id: 1, abbrev: 'AK', full_name: 'Alaska' },
-		{ id: 2, abbrev: 'NY', full_name: 'New York' },
-		{ id: 3, abbrev: 'FLA', full_name: 'Florida' },
-		{ id: 4, abbrev: 'CT', full_name: 'Connecticut' },
-		{ id: 5, abbrev: 'GA', full_name: 'Georgia' },
-		{ id: 6, abbrev: 'NC', full_name: 'North Carolina' }
-	]
+	typeAhead.set_source([
+		{ id: 1, abbrev: 'AK', full_name: 'Alaska via Fn' },
+		{ id: 2, abbrev: 'NY', full_name: 'New York via Fn' },
+		{ id: 3, abbrev: 'FLA', full_name: 'Florida via Fn' },
+		{ id: 4, abbrev: 'CT', full_name: 'Connecticut via Fn' },
+		{ id: 5, abbrev: 'GA', full_name: 'Georgia via Fn' },
+		{ id: 6, abbrev: 'NC', full_name: 'North Carolina via Fn' }
+	]);
 }
 
 $(function() {
@@ -57,7 +57,8 @@ $(function() {
 	});
 
 	$('.states_via_function').typeahead({
-		source: states_via_function,
+		sourceFn: states_via_function,
+		requestSource: 'onfocus',
 		matchProp: 'full_name',
 		sortProp: 'abbrev',
 		itemSelected: function(item, val, text) {

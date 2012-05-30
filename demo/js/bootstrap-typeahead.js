@@ -23,7 +23,8 @@ function($) {
       this.sorter =       this.options.sorter       || this.sorter
       this.highlighter =  this.options.highlighter  || this.highlighter
       this.select =       this.options.select       || this.select
-      this.render =       this.options.render       || this.render  
+      this.render =       this.options.render       || this.render
+      this.load_source()
       this.listen()
     }
 
@@ -63,16 +64,29 @@ function($) {
 
       return this
     }
-
+    
     ,
-    get_source: function() {
-      if(typeof(this.source) == 'function'){
-        return this.source();
-      } else {
-        return this.source;
+    focus: function(event) {
+      if(typeof(this.options.sourceFn)=='function' && this.options.requestSource=='onfocus'){
+        this.options.sourceFn(this)
       }
     }
 
+    ,
+    load_source: function() {
+      if(typeof(this.options.sourceFn)=='function' && this.options.requestSource=='onload'){
+        this.options.sourceFn(this);
+      }
+    }
+
+    ,
+    set_source: function(data){
+      this.source = data
+      // This forces a lookup on the newly set source if the user has typed in
+      // some characters before the sourceFn had a change to return.
+      this.lookup(); 
+    }
+    
     ,
     lookup: function(event) {
       var _this = this
@@ -85,7 +99,7 @@ function($) {
         return this.shown ? this.hide() : this
       }
 
-      items = $.grep(this.get_source(), function(item) {
+      items = $.grep(this.source, function(item) {
         var propVal = item[_this.options.matchProp] || item
         if (_this.matcher(propVal)) return item
       })
@@ -172,7 +186,10 @@ function($) {
 
     ,
     listen: function() {
-      this.$element.on('blur', $.proxy(this.blur, this)).on('keypress', $.proxy(this.keypress, this)).on('keyup', $.proxy(this.keyup, this))
+      this.$element.on('focus', $.proxy(this.focus, this)).
+                    on('blur', $.proxy(this.blur, this)).
+                    on('keypress', $.proxy(this.keypress, this)).
+                    on('keyup', $.proxy(this.keyup, this));
 
       if ($.browser.webkit || $.browser.msie) {
         this.$element.on('keydown', $.proxy(this.keypress, this))

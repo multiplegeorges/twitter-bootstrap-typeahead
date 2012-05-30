@@ -55,6 +55,27 @@ Description: The callback function that is invoked when an item is chosen.<br />
 
 + text: value of the *textProp* property
 
+**sourceFn**<br />
+Default: undefined
+Description: If you are loading the source data via AJAX, set this option to the function that will load the data. It receives the Typeahead instance as the only parameter. This function must, at some point, call `typeAhead.setSource(data)`, where `data` is the source data.
+
+Example:
+
+	var getMyData = function(typeAhead){
+		$.get('/my/ajax/endpoint', function(responseData){
+			typeAhead.set_source(responseData);
+		});
+	}
+
+**requestSource**<br />
+Default: undefined
+Description: When loading source data via AJAX, this specifies when to load the data. Possible value:
+
++ `onload`: Immediately when the Typeahead is created
+
++ `onfocus`: When the text field comes into focus
+
+
 Sample Usage
 ------------
     var cities = [
