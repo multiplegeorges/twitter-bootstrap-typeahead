@@ -56,8 +56,8 @@ Description: The callback function that is invoked when an item is chosen.<br />
 + text: value of the *textProp* property
 
 **sourceFn**<br />
-Default: undefined
-Description: If you are loading the source data via AJAX, set this option to the function that will load the data. It receives the Typeahead instance as the only parameter. This function must, at some point, call `typeAhead.setSource(data)`, where `data` is the source data.
+Default: undefined<br />
+Description: If you are loading the source data via AJAX, set this option to the function that will load the data. It receives the Typeahead instance as the only parameter. This function must, at some point, call `typeAhead.setSource(data)`, where `data` is the source data.<br/>
 
 Example:
 
@@ -68,8 +68,8 @@ Example:
 	}
 
 **requestSource**<br />
-Default: undefined
-Description: When loading source data via AJAX, this specifies when to load the data. Possible value:
+Default: undefined<br />
+Description: When loading source data via AJAX, this specifies when to load the data. Possible values: <br />
 
 + `onload`: Immediately when the Typeahead is created
 
